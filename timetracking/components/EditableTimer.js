@@ -1,30 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import TimerForm from './TimerForm';
-import Timer from './Timer';
 
-export default class EditableTimer extends React.Component {
-  state = {
-    editFormOpen: false,
+export default class EditableTimer extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      editFormOpen: false,
+    }
   }
 
   render() {
-    if (this.state.editFormOpen) {
+    const { id, title, project, elapsed, isRunning } = this.props;
+    const { editFormOpen } = this.state;
+
+    if (editFormOpen) {
       return (
-        <TimerForm
-          id={this.props.id}
-          title={this.props.title}
-          project={this.props.project}
-        />
+        <TimerForm id={id} title={title} project={project} />
       )
     }
     return (
-      <TimerForm
-        id={this.props.id}
-        title={this.props.title}
-        project={this.props.project}
-        elapsed={this.props.elapsed}
-        isRunning={this.props.isRunning}
+      <TimerForm 
+        id={id} 
+        title={title} 
+        project={project} 
+        elapsed={elapsed} 
+        isRunning={isRunning} 
       />
 
     )

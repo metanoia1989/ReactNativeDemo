@@ -1,35 +1,56 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 
 import TimerButton from './TimerButton';
 
-export default class TimerForm extends React.Components {
-  render() {
-    const submitText = this.props.id ? 'Update' : 'Create';
+export default class TimerForm extends Component {
+  constructor(props) {
+    super(props);
+    const { id, title, project } = props;
+    this.state = {
+      title: id ? title : '',
+      project: id ? project : '',
+    }
+  }
 
+  handleTitleChange = title => {
+    this.setState({ title });
+  };
+
+  handleProjectChange = project => {
+    this.setState({ project });
+  };
+
+  render() {
+    const { id } = this.props;
+    const { title, project } = this.state;
+    const submitText = id ? 'Update' : 'Create';
+    
     return (
       <View style={styles.formContainer}>
         <View style={styles.attributeContainer}>
-          <Text style={sytles.textInputTitle}>Title</Text>
-          <View sytle={styles.textInputConatiner}>
+          <Text style={styles.textInputTitle}>Title</Text>
+          <View style={styles.textInputConatiner}>
             <TextInput
               style={styles.textInput}
               underlineColorAndroid="transparent"
-              defaultValue={this.props.title}
+              onChangeText={this.handleTitleChange}
+              value={title}
             />
           </View>
         </View>
         <View style={styles.attributeContainer}>
-          <Text style={sytles.textInputTitle}>Project</Text>
-          <View sytle={styles.textInputConatiner}>
+          <Text style={styles.textInputTitle}>Project</Text>
+          <View style={styles.textInputConatiner}>
             <TextInput
               style={styles.textInput}
               underlineColorAndroid="transparent"
-              defaultValue={this.props.project}
+              onChangeText={this.handleProjectChange}
+              value={project}
             />
           </View>
         </View>
-        <View style={sytles.buttonGroup}>
+        <View style={styles.buttonGroup}>
           <TimerButton small color="#21BA45" title={submitText} />
           <TimerButton small color="#DB2828" title="Cancel" />
         </View>
@@ -38,7 +59,7 @@ export default class TimerForm extends React.Components {
   }
 }
 
-const sytles = StyleSheet.create({
+const styles = StyleSheet.create({
   formContainer: {
     backgroundColor: 'white',
     borderColor: '#D6D7DA',
@@ -65,7 +86,7 @@ const sytles = StyleSheet.create({
   textInputTitle: {
     fontSize: 14,
     fontWeight: 'bold',
-    marginBotton: 5,
+    marginBottom: 5,
   },
   buttonGroup: {
     flexDirection: 'row',
