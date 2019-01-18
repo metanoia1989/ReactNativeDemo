@@ -1,9 +1,24 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
+import PropTypes  from 'prop-types';
 
 import TimerButton from './TimerButton';
 
 export default class TimerForm extends Component {
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    project: PropTypes.string.isRequired,
+    onFormSubmit: PropTypes.func.isRequired,
+    onFormClose: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    id: null,
+    title: '',
+    project: '',
+  };
+
   constructor(props) {
     super(props);
     const { id, title, project } = props;
@@ -21,8 +36,15 @@ export default class TimerForm extends Component {
     this.setState({ project });
   };
 
+  handleSubmit = () => {
+    const { onFormSubmit, id } = this.props;
+    const { title,  project } = this.state;
+
+    onFormSubmit({ id, title, project });
+  }
+
   render() {
-    const { id } = this.props;
+    const { id, onFormClose } = this.props;
     const { title, project } = this.state;
     const submitText = id ? 'Update' : 'Create';
     
@@ -51,8 +73,18 @@ export default class TimerForm extends Component {
           </View>
         </View>
         <View style={styles.buttonGroup}>
-          <TimerButton small color="#21BA45" title={submitText} />
-          <TimerButton small color="#DB2828" title="Cancel" />
+          <TimerButton 
+            small 
+            color="#21BA45" 
+            title={submitText}
+            onPress={this.handleSubmit}  
+          />
+          <TimerButton 
+            small 
+            color="#DB2828" 
+            title="Cancel" 
+            onPress={onFormClose}
+          />
         </View>
       </View>
     )
@@ -63,11 +95,12 @@ const styles = StyleSheet.create({
   formContainer: {
     backgroundColor: 'white',
     borderColor: '#D6D7DA',
-    borderWidth: 2,
+    borderWidth: 1,
     borderRadius: 10,
     padding: 15,
     margin: 15,
     marginBottom: 0,
+    
   },
   attributeContainer: {
     marginVertical: 8,

@@ -1,3 +1,5 @@
+import uuidv4 from 'uuid/v4';
+
 function millisecondsToHuman(ms) {
   const seconds = Math.floor((ms / 1000) % 60);
   const minutes = Math.floor((ms / 1000 / 60) % 60);
@@ -12,6 +14,24 @@ function millisecondsToHuman(ms) {
   return humanized;
 }
 
+function pad(numberString, size) {
+  let padded = numberString;
+  while (padded.length < size) padded = `0${padded}`;
+  return padded;
+}
+
+function newTimer(attrs={}) {
+  const timer = {
+    title: attrs.title || 'Timer',
+    project: attrs.project || 'Project',
+    id: uuidv4(),
+    elapsed: 0,
+    isRunning: false,
+  }
+  return timer;
+}
+
 export {
   millisecondsToHuman,
+  newTimer,
 }
