@@ -6,6 +6,7 @@
 3. 30 Days of React 
 
 都是学习 React.js 的非常好的资料，而且是最近一两年的作品，技术非常新颖，很值得学习。
+flutter 是 Google 推广的跨平台语言，移动端是未来，再来的未来，是各种端，加油学习啊。
 
 # 相关项目Demo的地址
 1. 天氣APP [FullStack React native Exercise 1](https://github.com/kiraarghy/WeatherApp)
