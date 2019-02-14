@@ -1,8 +1,14 @@
 import React from 'react';
 
 export default class Proudct extends React.Component {
+
+  handleUpVote = () =>　{
+    const { id, onVote } = this.props;
+    onVote(id);
+  };
+
   render() {
-    
+
     const {
       id, title, description, url,
       votes, submitterAvatarUrl, productImageUrl
@@ -15,7 +21,7 @@ export default class Proudct extends React.Component {
         </div>
         <div className='middle aligned content'>
           <div className='header'>
-            <a>
+            <a onClick={this.handleUpVote}>
               <i className='large create up icon' />  
             </a> 
             {votes}
