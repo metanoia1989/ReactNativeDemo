@@ -5,7 +5,15 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
+  Dimensions,
+  FlatList,
 } from 'react-native';
+import { List } from 'react-native-paper';
+
+import colors from '../../utils/colors';
+
+const { width, height } = Dimensions.get('window');
+const cellWH =  width  / 3;
 
 const pages = [
   {
@@ -34,6 +42,11 @@ const pages = [
     image: require('../../assets/images/home/member.jpg'),
   },
   {
+    title: '销售统计',
+    routeName: 'Finance',
+    image: require('../../assets/images/home/banner.jpg'),
+  },
+  {
     title: '退换货管理',
     routeName: 'Refund',
     image: require('../../assets/images/home/news.jpg'),
@@ -46,34 +59,58 @@ const pages = [
 ];
 
 export default class Home extends Component {
+  /** 
+   * 跳转其他页面
+   */
   navigateToPage = (routeName) => {
     const { navigation } = this.props;
     navigation.navigate(routeName);
   }
 
-  renderPageItem = (item, index) => (
-    <TouchableOpacity 
-      onPress={this.navigateToPage}
-      style={styles.lattice_box}
-      key={index}
-    >
-      <View style={styles.lattice_item} > 
-        <View style={styles.lattice_thumbnail}>
-          <Image source={item.image} />
-          {/* <Image source={require("/assets/images/home/link.jpg")} /> */}
+  /** 
+   * 渲染导航栏项目
+   */
+  renderPageItem = ({item, index}) => {
+    return (
+      <TouchableOpacity 
+        onPress={this.navigateToPage}
+      >
+        <View style={styles.item}>
+          <View style={styles.image_wrapper}>
+            <Image style={styles.image} source={item.image} />
+          </View> 
+          <Text style={styles.text} numberOfLines={1}>{item.title}</Text>
         </View>
-        <View style={styles.lattice_text}>
-          <Text>{item.title}</Text>
-        </View>
-      </View>
-    </TouchableOpacity>
-  );  
+      </TouchableOpacity>
+    );  
+  };
 
   render() {
-    pages.map(item => console.log(item.image));
     return (
       <View style={styles.container}>
-        {pages.map((item, index) => this.renderPageItem(item))}
+        <FlatList 
+          data={pages}
+          renderItem={this.renderPageItem}
+          keyExtractor={(item, index) => index}
+          numColumns={3}
+          contentContainerStyle={styles.navigator_container}
+        />
+        <View style={styles.order_container}>
+          <List.Accordion 
+            title="客户订单"
+            left={props => <List.Icon {...props} icon="event-note" />}
+            style={styles.order_box}
+          >
+            <Text>hello</Text>      
+          </List.Accordion>
+          <List.Accordion 
+            title="退货订单"
+            left={props => <List.Icon {...props} icon="event-busy" />}
+            style={styles.order_box}
+          >
+            <Text>hello</Text>      
+          </List.Accordion>
+        </View>
       </View>
     );
   }
@@ -81,22 +118,50 @@ export default class Home extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
-    justifyContent: 'center', 
+    // flex: 1, 
+    backgroundColor: colors.pageBgColor,  
+  },
+  navigator_container: {
+    backgroundColor: colors.bgWhite,  
+  },    
+  item: {
+    paddingVertical: 10, 
+    borderRightWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: '#eee',
+    width: cellWH,
+    height: cellWH + 10,
     alignItems: 'center',
   },
-  lattice_box: {
-    flex: 1, 
-    justifyContent: 'center', 
-    alignItems: 'center',
+  image_wrapper: {
+    padding: 4,
+    borderColor: '#ddd',
+    borderWidth: 1,
+    borderRadius: 4,
+    shadowColor: '#000',
+    shadowOpacity: 0.075,
+    shadowRadius: 1,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
   },
-  lattice_item: {
-
+  image: {
+    maxWidth: cellWH - 45,
+    maxHeight: cellWH - 45,
   },
-  lattice_thumbnail: {
-
+  text: {
+    marginTop: 5, 
+    textAlign: 'center',
+    fontSize: 15,
+    fontWeight: "600",
   },
-  lattice_text: {
-
+  order_container: {
+    backgroundColor: colors.bgWhite,  
+    marginTop: 10,
+  },
+  order_box: {
+    borderBottomWidth: 1,
+    borderColor: '#eee',
   },
 });

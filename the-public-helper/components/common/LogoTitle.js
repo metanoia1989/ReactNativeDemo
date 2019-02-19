@@ -8,7 +8,7 @@ import {
 import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
 
-import { getMaterialIcon } from '../utils/api';
+import { getMaterialIcon } from '../../utils/api';
 
 class LogoTitle extends Component {
   static propTypes = {

@@ -32,7 +32,7 @@ import CropperScreen from '../screens/other/Cropper';
 import EditorScreen from '../screens/other/Editor';
 import MapScreen from '../screens/other/Map';
 
-import LogoTitle from '../components/LogoTitle';
+import LogoTitle from '../components/common/LogoTitle';
 import { getTabBarIcon } from '../utils/api';
 
 
