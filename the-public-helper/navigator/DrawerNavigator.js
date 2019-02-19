@@ -14,7 +14,7 @@ import FinanceScreen from '../screens/other/Finance';
 import FreightListScreen from '../screens/freight/FreightList';
 
 import { getTabBarIcon } from '../utils/api';
-import colors from '../utils/colors';
+import colors from '../styles/colors';
 
 
 const drawerScreens = ['Tabs', 'ProductList', 'OrderList', 'Finance', 'FreightList'];

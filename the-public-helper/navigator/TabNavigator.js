@@ -6,7 +6,7 @@ import {
   ShopStack,
   UserStack
 } from './StackNavigator';
-import colors from '../utils/colors';
+import colors from '../styles/colors';
 
 
 const TabNavigator = createBottomTabNavigator({

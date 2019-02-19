@@ -10,11 +10,18 @@ import {
 } from 'react-native';
 import { List } from 'react-native-paper';
 
-import colors from '../../utils/colors';
+import colors from '../../styles/colors';
+import { homeData } from '../../utils/data';
 
+/**
+ * 获取设备宽度
+ */
 const { width, height } = Dimensions.get('window');
 const cellWH =  width  / 3;
 
+/**
+ * 导航栏
+ */
 const pages = [
   {
     title: '产品管理',
@@ -86,6 +93,8 @@ export default class Home extends Component {
   };
 
   render() {
+    const { orders, refunds } = homeData;
+
     return (
       <View style={styles.container}>
         <FlatList 
@@ -99,9 +108,18 @@ export default class Home extends Component {
           <List.Accordion 
             title="客户订单"
             left={props => <List.Icon {...props} icon="event-note" />}
-            style={styles.order_box}
+            style={styles.order_wrapper}
           >
-            <Text>hello</Text>      
+            {orders.map(item => (
+              <View style={styles.order}>
+                <View style={styles.order_title}>
+                  <Text>订单号: {item.order_id}</Text>
+                  <Text>添加日期: {item.date_added}</Text>
+                  <Text>{item.status_name}</Text>
+                </View>
+                <View style={styles.}></View>
+              </View>
+            ))}
           </List.Accordion>
           <List.Accordion 
             title="退货订单"
@@ -160,7 +178,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.bgWhite,  
     marginTop: 10,
   },
-  order_box: {
+  order_wrapper: {
     borderBottomWidth: 1,
     borderColor: '#eee',
   },
