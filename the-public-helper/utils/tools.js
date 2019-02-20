@@ -1,5 +1,10 @@
-/**
- * js 工具函数
+/*
+ * @Description: js 工具函数
+ * @Author: Smith Adam
+ * @Email: sogaxili@gmail.com
+ * @LastEditors: Smith Adam
+ * @Date: 2019-02-19 09:51:52
+ * @LastEditTime: 2019-02-20 10:44:46
  */
 
 

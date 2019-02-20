@@ -1,3 +1,13 @@
+/*
+ * @Description: 项目虚拟数据
+ * @Author: Smith Adam
+ * @Email: sogaxili@gmail.com
+ * @LastEditors: Smith Adam
+ * @Date: 2019-02-20 09:33:59
+ * @LastEditTime: 2019-02-20 10:41:18
+ */
+
+
 const homeData = {
   orders: [
     {

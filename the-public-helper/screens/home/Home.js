@@ -7,17 +7,20 @@ import {
   TouchableOpacity,
   Dimensions,
   FlatList,
+  ScrollView,
+  Platform,
 } from 'react-native';
-import { List } from 'react-native-paper';
+import { List, Button } from 'react-native-paper';
 
 import colors from '../../styles/colors';
+import { getMaterialIcon } from '../../utils/api';
 import { homeData } from '../../utils/data';
 
 /**
  * 获取设备宽度
  */
-const { width, height } = Dimensions.get('window');
-const cellWH =  width  / 3;
+const { width: screenWidth } = Dimensions.get('window');
+const cellWH =  screenWidth  / 3;
 
 /**
  * 导航栏
@@ -66,6 +69,36 @@ const pages = [
 ];
 
 export default class Home extends Component {
+  // constructor (props) {
+  //   super(props);
+  //   this.state = {
+  //     orders: [],
+  //     refunds: [],
+  //     loading: false,
+  //     error: false,
+  //   };
+  // }
+
+  // /**
+  //  * 组件加载 获取数据
+  //  */
+  // async componentDidMount() {
+  //   try {
+  //     const { orders, refunds } = await fetchHomeOrders(); 
+  //     this.setState({ 
+  //       orders, 
+  //       refunds,
+  //       loading: true,
+  //     });
+  //   } catch (e) {
+  //     console.log(e);
+  //     this.setState({
+  //       loading: false,
+  //       error: true,
+  //     });
+  //   }
+  // }
+
   /** 
    * 跳转其他页面
    */
@@ -91,12 +124,12 @@ export default class Home extends Component {
       </TouchableOpacity>
     );  
   };
-
+      
   render() {
     const { orders, refunds } = homeData;
-
+        
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <FlatList 
           data={pages}
           renderItem={this.renderPageItem}
@@ -105,31 +138,89 @@ export default class Home extends Component {
           contentContainerStyle={styles.navigator_container}
         />
         <View style={styles.order_container}>
-          <List.Accordion 
+          <List.Accordion    
             title="客户订单"
             left={props => <List.Icon {...props} icon="event-note" />}
-            style={styles.order_wrapper}
+            style={[styles.order_wrapper, {borderBottomWidth: 0}]}
           >
-            {orders.map(item => (
-              <View style={styles.order}>
+            <View style={styles.order_bg}>
+            {orders.map((item, index) => (
+              <View style={styles.order} key={index}>
                 <View style={styles.order_title}>
-                  <Text>订单号: {item.order_id}</Text>
-                  <Text>添加日期: {item.date_added}</Text>
-                  <Text>{item.status_name}</Text>
+                  <Text style={styles.order_id}>订单号: {item.order_id}</Text>
+                  <Text style={styles.order_added}>添加日期: {item.date_added}</Text>
+                  <Text style={styles.order_button}>
+                    {item.status_name}
+                  </Text>
                 </View>
-                <View style={styles.}></View>
+                <View style={styles.order_content}>
+                  <Text style={styles.order_text}>
+                    订单来源: <Text style={styles.primary_text}>{item.store_name}</Text>
+                  </Text>
+                  <Text style={styles.order_text}>客户: {item.customer_email}</Text>
+                  <Text style={styles.order_text}>
+                    总价: <Text style={styles.danger_text}>&yen;{item.total}</Text>
+                  </Text>
+                  <Text style={styles.order_text}>客户姓名: {item.shopping_name}</Text>
+                  <Text style={styles.order_text}>联系方式: {item.shopping_mobile}</Text>
+                  <Text style={styles.order_text}>地址: {item.shopping_address}</Text>
+                </View>  
+                <View style={styles.order_footer}>
+                  <Button 
+                    mode="contained" 
+                    icon="attach-money" 
+                    compact={true}
+                    color={colors.warning}
+                    style={styles.view_detail}
+                  >
+                    退款详情
+                  </Button>
+                  <Button 
+                    mode="contained" 
+                    icon="remove-red-eye" 
+                    compact={true}
+                    color={colors.primary}
+                    style={styles.view_detail}
+                  >
+                    查看详情
+                  </Button>
+                </View>
               </View>
             ))}
+            </View>
           </List.Accordion>
           <List.Accordion 
             title="退货订单"
             left={props => <List.Icon {...props} icon="event-busy" />}
-            style={styles.order_box}
+            style={styles.order_wrapper}
           >
-            <Text>hello</Text>      
+            <View style={styles.order_bg}>
+            {refunds.map((item, index) => (
+              <View style={styles.order} key={index}>
+                <View style={styles.order_title}>
+                  <Text>订单号: {item.order_id}</Text>
+                  <Text>添加日期: {item.date_ordered}</Text>
+                  <Text>{item.return_status_name}</Text>
+                </View>
+                <View style={styles.order_content}>
+                  <Text>退还号: {item.return_id}</Text>
+                  <Text>客户: {item.current_name}</Text>
+                  <Text>退款金额: {item.return_amount}</Text>
+                  <Text>客户姓名: {item.shipping_name}</Text>
+                  <Text>联系方式: {item.shipping_mobile}</Text>
+                  <Text>地址: {item.shipping_address}</Text>
+                </View>
+                <View style={styles.order_footer}>
+                  <View style={styles.button}>
+                    <Text>退款详情</Text>
+                  </View>
+                </View>
+              </View>
+            ))}
+            </View>
           </List.Accordion>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -139,6 +230,7 @@ const styles = StyleSheet.create({
     // flex: 1, 
     backgroundColor: colors.pageBgColor,  
   },
+
   navigator_container: {
     backgroundColor: colors.bgWhite,  
   },    
@@ -154,15 +246,22 @@ const styles = StyleSheet.create({
   image_wrapper: {
     padding: 4,
     borderColor: '#ddd',
-    borderWidth: 1,
-    borderRadius: 4,
-    shadowColor: '#000',
-    shadowOpacity: 0.075,
-    shadowRadius: 1,
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
+    borderRadius: 2,
+    ...Platform.select({
+      ios: {
+        borderWidth: 1,
+        shadowColor: '#000',
+        shadowOpacity: 0.075,
+        shadowRadius: 1,
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+      },
+      android: {
+        elevation: 1,
+      },
+    }),
   },
   image: {
     maxWidth: cellWH - 45,
@@ -174,12 +273,99 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "600",
   },
+    
   order_container: {
     backgroundColor: colors.bgWhite,  
     marginTop: 10,
   },
   order_wrapper: {
-    borderBottomWidth: 1,
+    borderTopWidth: 1,
     borderColor: '#eee',
+  },
+  order_bg: {
+    backgroundColor: colors.pageBgColor,  
+    paddingLeft: 0,     
+    borderTopWidth: 1,
+    borderColor: '#eee',
+  },
+  order: {
+    backgroundColor: colors.bgWhite,  
+    width: screenWidth,
+    marginBottom: 10, 
+    elevation: 1,
+  },
+  order_title: {
+    flexWrap: 'wrap', 
+    height: 40,
+    alignItems: 'center',
+    paddingLeft: 10,   
+    position: 'relative',
+  },   
+  order_content: {
+    borderTopWidth: 0.8,
+    borderBottomWidth: 0.8,
+    borderColor: '#eee',
+    padding: 10,   
+  },
+  order_footer: {
+    paddingVertical: 5,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    height: 40,
+  },
+  order_id: {
+    fontSize: 15,
+    height: 40,
+    textAlign: 'center',
+    textAlignVertical:'center',
+  },
+  order_added: {
+    fontSize: 15,
+    height: 40,
+    textAlign: 'center',
+    textAlignVertical:'center',
+    marginHorizontal: 12,
+  },
+  order_button: {
+    fontSize: 15,
+    height: 30,
+    position: 'absolute',
+    right: 10,
+    marginVertical: 5,
+    textAlign: 'center',
+    textAlignVertical:'center',
+    color: '#39b54a',
+    paddingHorizontal: 6,
+    ...Platform.select({
+      ios: {
+      shadowColor: '#5eb95e',
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        shadowOffset: {
+          width: 2,
+          height: 2,
+        },
+      },
+      android: {
+        elevation: 0.5,
+        borderRadius: 4,
+      },
+    }),
+  },
+  order_text: {
+    fontSize: 15,
+  },
+  primary_text: {
+    color: colors.primary,
+  },
+  danger_text: {
+    color: colors.danger,
+  },
+  view_detail: {
+    opacity: 0.8,
+    marginHorizontal: 5,
+    color: 'white',
+    height: 30,
+    justifyContent: 'center',
   },
 });
