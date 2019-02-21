@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { 
-  View, 
-  Text, 
   TouchableOpacity, 
   StyleSheet 
 } from 'react-native';
@@ -10,18 +8,13 @@ import PropTypes from 'prop-types';
 
 import { getMaterialIcon } from '../../utils/api';
 
-class LogoTitle extends Component {
+class NavigatorIcon extends Component {
   static propTypes = {
-    title: PropTypes.string,
     navigation: PropTypes.object.isRequired,
   };
 
-  static defaultProps = {
-    title: '',
-  };
-
   /**
-   * 切换抽屉菜单
+   * 切换抽屉菜单     
    */
   handleToggleDrawer = () => {
     const { navigation } = this.props;
@@ -33,26 +26,19 @@ class LogoTitle extends Component {
 
     return (
       <TouchableOpacity 
-        style={styles.container}
+        style={styles.icon}
         onPress={this.handleToggleDrawer}
       >
-        <View style={styles.icon}>{getMaterialIcon('menu')}</View> 
-        <Text>{title}</Text>     
+        {getMaterialIcon('menu')}
       </TouchableOpacity>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
   icon: {
-    marginLeft: 5,
-    marginRight: 5,
+    marginHorizontal: 10,
   },
 });
 
-export default withNavigation(LogoTitle);
+export default withNavigation(NavigatorIcon);

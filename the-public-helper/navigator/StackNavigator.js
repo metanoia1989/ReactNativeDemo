@@ -32,7 +32,7 @@ import CropperScreen from '../screens/other/Cropper';
 import EditorScreen from '../screens/other/Editor';
 import MapScreen from '../screens/other/Map';
 
-import LogoTitle from '../components/common/LogoTitle';
+import NavigatorIcon from '../components/common/NavigatorIcon';
 import { getTabBarIcon } from '../utils/api';
 
 
@@ -43,9 +43,6 @@ import { getTabBarIcon } from '../utils/api';
 const ProductStack = createStackNavigator({
   ProductList: {
     screen: ProductListScreen,
-    navigationOptions: {
-      headerTitle: <LogoTitle title='商品列表' />,
-    },   
   },
   ProductOperate: {
     screen: ProductOperateScreen,
@@ -66,6 +63,9 @@ const ProductStack = createStackNavigator({
   initialRouteName: 'ProductList',
   mode: 'card',  
   navigationOptions: {
+    headerTitleStyle: {
+      fontWeight: '100',
+    },
     tabBarLabel: '商品',
     tabBarIcon: getTabBarIcon('local-mall'),
   },
@@ -78,7 +78,11 @@ const ShopStack = createStackNavigator({
   ShopList: {
     screen: ShopListScreen,
     navigationOptions: {
-      headerTitle: <LogoTitle title='店铺列表' />,
+      title: '店铺列表',    
+      headerTitleStyle: {
+        fontWeight: '100',
+      },
+      headerLeft: <NavigatorIcon  />,
     },   
   },
   ShopOperate: {
@@ -107,7 +111,11 @@ const UserStack = createStackNavigator({
   Dashboard: {
     screen: DashboardScreen,
     navigationOptions: {
-      headerTitle: <LogoTitle title='个人中心' />,
+      title: '个人中心',
+      headerTitleStyle: {
+        fontWeight: '100',
+      },
+      headerLeft: <NavigatorIcon />,
     },   
   },  
   UserInfo: {
@@ -156,7 +164,11 @@ const HomeStack = createStackNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions: {
-      headerTitle: <LogoTitle title='首页' />,
+      title: '首页',
+      headerTitleStyle: {
+        fontWeight: '100',
+      },
+      headerLeft: <NavigatorIcon />,
     },   
   },
   ProductList: {

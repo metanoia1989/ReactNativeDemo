@@ -4,7 +4,7 @@
  * @Email: sogaxili@gmail.com
  * @LastEditors: Smith Adam
  * @Date: 2019-02-18 10:00:15
- * @LastEditTime: 2019-02-20 10:42:04
+ * @LastEditTime: 2019-02-21 15:46:04
  */
 
 import React from 'react';
@@ -24,7 +24,7 @@ const getTabBarIcon = icon => ({ tintColor }) => (
  * @param {string} color 
  * @param {number} size 
  */
-const getMaterialIcon = (icon, color = 'black', size = 26) => (
+const getMaterialIcon = (icon, color = 'gray', size = 26) => (
   <MaterialIcons name={icon} size={size} style={{ color }} />
 ); 
 
