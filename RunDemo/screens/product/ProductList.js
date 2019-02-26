@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { 
-  Text, 
-  View,
-  TouchableOpacity,
   StyleSheet,
   ScrollView,
   FlatList,
@@ -10,6 +7,7 @@ import {
 
 import NavigatorIcon from '../../components/common/NavigatorIcon';
 import HeaderRightIcon from '../../components/common/HeaderRightIcon';
+import YellowFAB from '../../components/common/YellowFAB';
 import Product from '../../components/product/Product';
 
 import colors from '../../styles/colors';
@@ -40,7 +38,6 @@ export default class ProductList extends Component {
   };
    
   render() {
-    console.log(productData);
     return (
       <ScrollView style={styles.container}>
         <FlatList 
@@ -49,6 +46,10 @@ export default class ProductList extends Component {
           keyExtractor={(item, index) => index.toString()}
           contentContainerStyle={styles.navigator_container}
         />
+        <YellowFAB actions={[
+          { icon: 'account-balance-wallet', label: '添加普通实体商品', onPress: () => console.log('Pressed add') },
+          { icon: 'branding-watermark', label: '添加服务类虚拟商品', onPress: () => console.log('Pressed star')},
+        ]} />
       </ScrollView>
     );
   }

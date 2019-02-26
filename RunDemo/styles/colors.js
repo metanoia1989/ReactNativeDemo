@@ -3,6 +3,9 @@ const primary = '#0081ff';
 const warning = '#fda83d';  
 const danger = '#dd514c';
 const success = '#39b54a';
+const gray = '#eeeeee';
+
+const lightgray = '#666';
 
 const primaryYellow = '#f5d34a'; // app 主体颜色
 const keepYellow = '#f5b80d'; // google keep 的颜色
@@ -17,6 +20,9 @@ export default {
   warning,
   danger,
   success,
+  gray,
+
+  lightgray,
 
   primaryYellow,
   keepYellow,

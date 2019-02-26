@@ -15,7 +15,7 @@ const TabNavigator = createBottomTabNavigator({
   Shops: ShopStack,
   User: UserStack,
 }, {
-  initialRouteName: 'Home',
+  initialRouteName: 'Shops',
   tabBarOptions: {
     activeTintColor: colors.primaryYellow,
     inactiveTintColor: colors.grayWhite, 
