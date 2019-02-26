@@ -38,7 +38,7 @@ export default class ShopList extends Component {
     this.state = {
       open: false,
     };
-  }
+  }   
 
   /** 
    * 渲染店铺
@@ -48,7 +48,7 @@ export default class ShopList extends Component {
   };
 
   render() {
-
+    
     return (
       <ScrollView style={styles.container}>
         <FlatList 

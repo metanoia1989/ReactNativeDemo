@@ -38,6 +38,7 @@ export default class ProductList extends Component {
   };
    
   render() {
+
     return (
       <ScrollView style={styles.container}>
         <FlatList 
