@@ -2,35 +2,85 @@ import React, { Component } from 'react';
 import { 
   Text, 
   View, 
-  Image,
+  TouchableHighlight,
   StyleSheet,
-  Platform,
 } from 'react-native';
-import {  Button } from 'react-native-paper';
 import PropTypes from 'prop-types';
 
+import { getMaterialIcon } from '../../utils/api';
 import colors from '../../styles/colors';
-import { buttons, texts } from '../../styles/componnets';
 
-export default class Shop extends Component {
+export default class Item extends Component {
   
-  // static propTypes = {
-  //   shop_id: PropTypes.string.isRequired,
-  // };
+  static propTypes = {
+    icon: PropTypes.string,
+    color: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    arrow: PropTypes.bool,
+    last: PropTypes.bool,
+    onPress: PropTypes.func,
+  };
+
+  static defaultProps = {
+    color: colors.primaryYellow,
+    icon: 'format-list-bulleted',
+    arrow: true,
+    last: false,
+    onPress: () => console.log('点击了item'),
+  };
+
+  handlePress = () => {
+    this.props.onPress();
+  };
 
   render () {
-    //const { } = this.props;
-
+    const { icon, color, title, arrow, last } = this.props;
 
     return (
-      <View>    
-        <Text>测试</Text>
-      </View>
+      <TouchableHighlight underlayColor='#eee' onPress={this.handlePress}>
+        <View style={[styles.item, last && styles.noBorder]}>    
+          <View style={styles.content}>
+            <View style={styles.icon}>
+              {getMaterialIcon(icon, color)}
+            </View>
+            <Text style={styles.title}>{title}</Text>
+          </View>
+          <View style={styles.arrow}>
+            {arrow && getMaterialIcon('keyboard-arrow-right', '#bbb')}
+          </View>
+        </View>
+      </TouchableHighlight>
     );
   }
 }
 
 
 const styles = StyleSheet.create({
+  item: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: 53,
+    borderBottomColor: '#eee',
+    borderBottomWidth: 1,
+    marginHorizontal: 15,
+  },
+  noBorder: {
+    borderBottomWidth: 0,
+  },
+  content: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  icon: {
+    marginRight: 10,
+  },
+  title: {
+    fontSize: 18,
+    color: '#555',
+    fontWeight: '100',
+  },
+  arrow: {
 
+  },
 });

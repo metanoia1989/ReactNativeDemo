@@ -50,6 +50,9 @@ const texts = StyleSheet.create({
   big_text: {
     fontSize: 20,
   },
+  white_text: {
+    color: 'white',
+  },
 });
 
 

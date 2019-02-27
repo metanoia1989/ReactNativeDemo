@@ -42,7 +42,6 @@ export default class Product extends Component {
       <View style={styles.product}>    
         <View style={styles.product_title}>
           {Boolean(sku) && <Text style={styles.product_id}>商品编号: {sku}</Text>}
-          {Boolean(model) && <Text style={styles.product_added}>商品型号: {model}</Text>}   
           <Text style={[buttons.shadow_button, status ? texts.primary_text : texts.danger_text]}>
             {status ? '已启用' : '已停用'}
           </Text>
@@ -51,6 +50,9 @@ export default class Product extends Component {
           <Image style={styles.image} source={{ uri: image}} />
           <View>
             <Text style={texts.big_text}>{product_name}</Text>
+            {Boolean(model) && (
+              <Text>商品型号: {model}</Text>   
+            )}
             <Text>商品类型: {product_type_name}</Text>
             <Text>销售单位: {unit}</Text>
             <Text>库存数量: {quantity}</Text>
@@ -147,12 +149,6 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     textAlignVertical:'center',
   },
-  product_added: {
-    fontSize: 15,
-    height: 40,
-    textAlign: 'left',
-    textAlignVertical:'center',
-  },
   product_text: {
     fontSize: 15,
   },
@@ -164,8 +160,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 130,
+    height: 130,
     marginRight: 10,
   },
 });

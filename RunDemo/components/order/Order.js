@@ -49,10 +49,10 @@ export class Order extends Component {
       <View style={styles.order}>
         <View style={styles.order_title}>
           <Text style={styles.order_id}>订单号: {order_id}</Text>
-          <Text style={styles.order_added}>添加日期: {date_added}</Text>
           <Text style={styles.order_button}>{status_name}</Text>
         </View>
         <View style={styles.order_content}>
+          <Text style={styles.order_text}>订单日期: {date_added}</Text>
           <Text style={styles.order_text}>
             订单来源: <Text style={styles.primary_text}>{store_name}</Text>
           </Text>
@@ -121,10 +121,10 @@ export class Refund extends Component {
       <View style={styles.order}>
         <View style={styles.order_title}>
           <Text style={styles.order_id}>订单号: {order_id}</Text>
-          <Text style={styles.order_added}>添加日期: {date_ordered}</Text>
           <Text style={styles.order_button}>{return_status_name}</Text>
         </View>
         <View style={styles.order_content}>
+          <Text style={styles.order_text}>订单日期: {date_ordered}</Text>
           <Text style={styles.order_text}>退还号: {return_id}</Text>
           <Text style={styles.order_text}>客户: {current_name}</Text>
           <Text style={styles.order_text}>
@@ -161,7 +161,9 @@ const styles = StyleSheet.create({
   },
   order_title: {
     flexWrap: 'wrap', 
+    flexDirection: 'row',
     height: 40,
+    justifyContent: 'space-between',
     alignItems: 'center',
     paddingLeft: 10,   
     position: 'relative',
@@ -183,13 +185,6 @@ const styles = StyleSheet.create({
     height: 40,
     textAlign: 'center',
     textAlignVertical:'center',
-  },
-  order_added: {
-    fontSize: 15,
-    height: 40,
-    textAlign: 'center',
-    textAlignVertical:'center',
-    marginHorizontal: 12,
   },
   order_button: {
     fontSize: 15,
