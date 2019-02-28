@@ -1,25 +1,57 @@
-import { createSwitchNavigator } from 'react-navigation';
+import { 
+  createSwitchNavigator,
+  createStackNavigator,
+} from 'react-navigation';
 import DrawerNavigator from './DrawerNavigator';
+import TabNavigator from './TabNavigator';
+import { 
+  ProductScreens,
+  ShopScreens,
+  UserScreens,
+} from './StackScreens';
 
 import SigninScreen from '../screens/user/Signin';
 import RegisterScreen from '../screens/user/Register';
 
-const MainNavigator = createSwitchNavigator({
+import colors from '../styles/colors';
+
+// const MainNavigator = createSwitchNavigator({
   // Loading: { 
   //   screen:  LoadingScreen 
   // },
-  Drawer: { 
-    screen:  DrawerNavigator 
+//   Drawer: { 
+//     screen:  DrawerNavigator 
+//   },
+//   Signin: { 
+//     screen:  SigninScreen 
+//   },
+//   Register: { 
+//     screen:  RegisterScreen 
+//   },
+// }, {
+//   initialRouteName: 'Drawer',
+// });
+
+const MainNavigator = createStackNavigator({
+  MainTab: {
+    screen: TabNavigator,
   },
-  Signin: { 
-    screen:  SigninScreen 
-  },
-  Register: { 
-    screen:  RegisterScreen 
-  },
+  ...ProductScreens,
+  ...ShopScreens,
+  ...UserScreens,
+  
 }, {
-  initialRouteName: 'Drawer',
+  initialRouteName: 'ProductPrice',
+  // initialRouteName: 'MainTab',
+  defaultNavigationOptions: {
+    headerTitleStyle: {
+      color: 'white',
+      fontWeight: '100',
+    },
+    headerStyle: {
+      backgroundColor: colors.primaryYellow,
+    },
+  },
 });
 
-export default DrawerNavigator;     
-// export default MainNavigator; 
+export default MainNavigator; 

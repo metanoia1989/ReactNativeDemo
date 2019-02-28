@@ -45,7 +45,7 @@ export default class Item extends Component {
             </View>
             <Text style={styles.title}>{title}</Text>
           </View>
-          <View style={styles.arrow}>
+          <View>
             {arrow && getMaterialIcon('keyboard-arrow-right', '#bbb')}
           </View>
         </View>
@@ -79,8 +79,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#555',
     fontWeight: '100',
-  },
-  arrow: {
-
   },
 });

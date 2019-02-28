@@ -7,3 +7,9 @@
 
 SSD 固态硬盘真是快到飞起啊 
 一点都不卡顿，爽死了。
+
+# 引入 react-navigation demo
+这个react-navigation 导航 有些地方我不是很清楚
+=_= 就是想看看这个实例怎么样 结果 环境各种问题
+react native 的环境真是够麻烦的
+

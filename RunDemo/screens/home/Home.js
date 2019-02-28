@@ -12,9 +12,12 @@ import {
 } from 'react-native';
 import { List } from 'react-native-paper';
 
+import NavigatorIcon from '../../components/common/NavigatorIcon';
+
 import { Order, Refund } from '../../components/order/Order';
 import colors from '../../styles/colors';
 import { homeData } from '../../utils/data';
+import { getTabBarIcon } from '../../utils/api';
    
 /**
  * 获取设备宽度
@@ -98,6 +101,14 @@ export default class Home extends Component {
   //     });
   //   }
   // }
+
+    static navigationOptions = {
+      title: '首页',
+      headerLeft: <NavigatorIcon />,
+
+      tabBarLabel: '首页',
+      tabBarIcon: getTabBarIcon('home')
+    };   
 
   /** 
    * 跳转其他页面

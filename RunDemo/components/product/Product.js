@@ -13,19 +13,72 @@ import {
   View, 
   Image,
   StyleSheet,
-  Platform,
 } from 'react-native';
 import {  Button } from 'react-native-paper';
+import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
 
 import colors from '../../styles/colors';
 import { buttons, texts } from '../../styles/componnets';
 
-export default class Product extends Component {
+class Product extends Component {
   
-  // static propTypes = {
-  //   product_id: PropTypes.string.isRequired,
-  // };
+  static propTypes = {
+    product_id: PropTypes.number.isRequired,
+    image: PropTypes.string,
+    sku: PropTypes.string,
+    product_name: PropTypes.string,
+    model: PropTypes.string,
+    unit: PropTypes.string,
+    status: PropTypes.number.isRequired,
+    quantity: PropTypes.number.isRequired,
+    approved: PropTypes.number.isRequired,
+    product_type_name: PropTypes.string,
+    product_type_en: PropTypes.string,
+    activity_name: PropTypes.string,
+    join_activity: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    activity_status: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    navigation: PropTypes.object.isRequired,
+  };
+
+  static defaultProps = {
+
+  };
+
+  navigateToPrice = () => {
+    const { product_id: id, navigation } = this.props;
+    console.log('跳转商品价格页面', id);
+    navigation.navigate('ProductPrice', { id });
+  };
+
+  navigateToPreview = () => {
+    const { product_id: id, navigation } = this.props;
+    console.log('跳转商品预览页面', id);
+    navigation.navigate('ProductPreview', { id });
+  };
+
+  navigateToEdit= () => {
+    const { product_id: id, navigation } = this.props;
+    console.log('跳转商品编辑页面', id);
+    navigation.navigate('ProductOperate', { id });
+  };
+
+  navigateToComment= () => {
+    const { product_id: id, navigation } = this.props;
+    console.log('跳转商品评论页面', id);
+    navigation.navigate('ProductComments', { id });
+  };
+
+  handleDelete = () => {
+    const { product_id: id } = this.props;
+    console.log('删除商品', id);
+  };
 
   render () {
     const { 
@@ -67,6 +120,7 @@ export default class Product extends Component {
             dark={true}
             color={colors.success}   
             style={styles.view_detail}
+            onPress={this.navigateToPrice}
           >
             价格
           </Button>
@@ -76,6 +130,7 @@ export default class Product extends Component {
             dark={false}
             color={colors.gray}
             style={styles.view_detail}
+            onPress={this.navigateToPreview}
           >
            <Text style={texts.lightgray_text}>预览 </Text>
           </Button>
@@ -85,6 +140,7 @@ export default class Product extends Component {
             dark={true}
             color={colors.primary}
             style={styles.view_detail}
+            onPress={this.navigateToEdit}
           >     
             编辑
           </Button>
@@ -94,7 +150,8 @@ export default class Product extends Component {
             dark={true}
             color={colors.danger}
             style={styles.view_detail}
-          >
+            onPress={this.handleDelete}
+          >     
            删除
           </Button>
           <Button 
@@ -103,6 +160,7 @@ export default class Product extends Component {
             dark={true}
             color={colors.warning}
             style={styles.view_detail}
+            onPress={this.navigateToComment}
           >
            查看评价
           </Button>
@@ -165,3 +223,5 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
 });
+
+export default withNavigation(Product);

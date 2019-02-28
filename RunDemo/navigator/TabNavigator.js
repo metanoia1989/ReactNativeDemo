@@ -1,21 +1,29 @@
 import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation';
-import {
-  HomeStack,
-  ProductStack,
-  ShopStack,
-  UserStack
-} from './StackNavigator';
+import HomeScreen from '../screens/home/Home';
+import ProductListScreen from '../screens/product/ProductList';
+import ShopListScreen from '../screens/shop/ShopList';
+import DashboardScreen from '../screens/user/Dashboard';
+
 import colors from '../styles/colors';
+import ShopList from '../screens/shop/ShopList';
 
 
 const TabNavigator = createBottomTabNavigator({
-  Home: HomeStack,
-  Products: ProductStack,
-  Shops: ShopStack,
-  User: UserStack,
+  Home: {
+    screen: HomeScreen,
+  }, 
+  Products: {
+    screen: ProductListScreen,
+  }, 
+  Shops: {
+    screen: ShopListScreen,
+  },
+  User: {
+    screen: DashboardScreen,
+  },
 }, {
-  initialRouteName: 'User',
+  initialRouteName: 'Home',
   tabBarOptions: {
     activeTintColor: colors.primaryYellow,
     inactiveTintColor: colors.grayWhite, 
@@ -29,9 +37,23 @@ const TabNavigator = createBottomTabNavigator({
     style: {
       backgroundColor: colors.bgWhite,
     }, 
-
   }
 });
+
+TabNavigator.navigationOptions = ({ navigation }) => {
+  const { routeName } = navigation.state.routes[navigation.state.index];
+
+  switch (routeName) {
+    case "Home":
+      return HomeScreen.navigationOptions;
+    case "Products":
+      return ProductListScreen.navigationOptions({navigation});
+    case "Shops":
+      return ShopListScreen.navigationOptions({navigation});
+    case "User":
+      return DashboardScreen.navigationOptions;
+  }
+};
 
 
 export default TabNavigator;

@@ -1,12 +1,3 @@
-/*
- * @Description: 商品组件
- * @Author: Smith Adam
- * @Email: sogaxili@gmail.com
- * @LastEditors: Smith Adam
- * @Date: 2019-02-21 09:51:11
- * @LastEditTime: 2019-02-21 18:11:27
- */
-
 import React, { Component } from 'react';
 import { 
   Text, 

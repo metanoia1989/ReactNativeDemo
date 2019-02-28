@@ -12,15 +12,17 @@ import Product from '../../components/product/Product';
 
 import colors from '../../styles/colors';
 import { productData } from '../../utils/data';
+import { getTabBarIcon } from '../../utils/api';
 
 export default class ProductList extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.getParam('title', '商品列表'),
-    headerTitleStyle: {
-      fontWeight: '100',
-    },
     headerLeft: <NavigatorIcon />,
     headerRight: <HeaderRightIcon />, 
+    headerLeft: <NavigatorIcon />,
+    // tab 
+    tabBarLabel: '商品',
+    tabBarIcon: getTabBarIcon('local-mall'),
   });   
 
   handleHeader = () => {
@@ -29,6 +31,7 @@ export default class ProductList extends Component {
       title: '啦啦啦啦',     
     });
   };
+
 
   /** 
    * 渲染商品
@@ -45,7 +48,6 @@ export default class ProductList extends Component {
           data={productData}
           renderItem={this.renderItem}   
           keyExtractor={(item, index) => index.toString()}
-          contentContainerStyle={styles.navigator_container}
         />
         <YellowFAB actions={[
           { icon: 'account-balance-wallet', label: '添加普通实体商品', onPress: () => console.log('Pressed add') },
@@ -60,7 +62,4 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.pageBgColor,  
   },
-  navigator_container: {
-    backgroundColor: colors.pageBgColor,  
-  },    
 });

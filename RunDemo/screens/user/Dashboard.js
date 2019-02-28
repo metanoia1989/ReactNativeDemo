@@ -9,10 +9,10 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-paper';
 
-import Item from '../../components/list/Item';
+import NavigatorIcon from '../../components/common/NavigatorIcon';
 import List from '../../components/list/List';
 import { userinfo } from '../../utils/data';
-import { getMaterialIcon } from '../../utils/api';
+import { getMaterialIcon, getTabBarIcon } from '../../utils/api';
 import  colors  from '../../styles/colors';
 import { texts } from '../../styles/componnets';
 
@@ -27,6 +27,13 @@ const listData = [
 ];
 
 export default class Dashborad extends Component {
+  static navigationOptions = {
+    title: '个人中心',
+    headerLeft: <NavigatorIcon />,
+
+    tabBarLabel: '个人中心',
+    tabBarIcon: getTabBarIcon('account-circle')
+  };
 
   render() {
     return (
