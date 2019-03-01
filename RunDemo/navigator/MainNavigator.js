@@ -41,7 +41,7 @@ const MainNavigator = createStackNavigator({
   ...UserScreens,
   
 }, {
-  initialRouteName: 'ProductPrice',
+  initialRouteName: 'ProductComments',
   // initialRouteName: 'MainTab',
   defaultNavigationOptions: {
     headerTitleStyle: {

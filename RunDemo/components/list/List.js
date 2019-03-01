@@ -45,7 +45,7 @@ export default class List extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.bgWhite,
-    borderBottomColor: '#eee',
+    borderBottomColor: colors.borderColor,
     borderBottomWidth: 1,
   },
 });

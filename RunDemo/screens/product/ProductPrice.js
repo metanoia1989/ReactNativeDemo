@@ -12,40 +12,50 @@ import Title from '../../components/product/Title';
 
 import colors from '../../styles/colors';
 import { productPricesData } from '../../utils/data';
+import { fixeds } from '../../styles/components';
 
 export default class ProductPrice extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: '商品价格',
+    headerStyle: {
+      backgroundColor: colors.primaryYellow,
+      elevation: 0,
+    },
   });
 
-  /** 
-   * 渲染商品价格
-   */
   renderItem = ({ item }) => {
     return <Price {...item} />;
   };
 
   render() {
     const { name, prices } = productPricesData;
+
     return (
-      <ScrollView style={styles.container}>
-        <View style={styles.fixed}>
+      <View style={styles.container}>
+        <View style={fixeds.title_fixed}>
           <Title name={name} />
         </View>
-        <FlatList 
-          data={prices}
-          renderItem={this.renderItem}   
-          numColumns={2}
-          keyExtractor={(item, index) => index.toString()}
-        /> 
-      </ScrollView>
+        <ScrollView>
+          <FlatList 
+            data={prices}
+            renderItem={this.renderItem}   
+            numColumns={2}
+            keyExtractor={(item, index) => index.toString()}
+            contentContainerStyle={styles.list_container}
+          /> 
+        </ScrollView>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.pageBgColor,  
     flex: 1,
+    backgroundColor: colors.pageBgColor,  
+    position: 'relative',
+  },
+  list_container: {
+    paddingTop: 50,
   },
 });

@@ -10,7 +10,7 @@ import {  Button } from 'react-native-paper';
 import PropTypes from 'prop-types';
 
 import colors from '../../styles/colors';
-import { buttons, texts } from '../../styles/componnets';
+import { buttons, texts } from '../../styles/components';
 
 export default class Shop extends Component {
   
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   shop_content: {
     borderTopWidth: 0.8,
     borderBottomWidth: 0.8,
-    borderColor: '#eee',
+    borderColor: colors.borderColor,
     padding: 10,   
     flexDirection: 'row',
     justifyContent: 'flex-start',

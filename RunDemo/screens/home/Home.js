@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10, 
     borderRightWidth: 1,
     borderBottomWidth: 1,
-    borderColor: '#eee',
+    borderColor: colors.borderColor,
     width: cellWH,
     height: cellWH + 10,
     alignItems: 'center',
@@ -227,12 +227,12 @@ const styles = StyleSheet.create({
   },
   order_wrapper: {
     borderTopWidth: 1,
-    borderColor: '#eee',
+    borderColor: colors.borderColor,
   },
   order_bg: {
     backgroundColor: colors.pageBgColor,  
     paddingLeft: 0,     
     borderTopWidth: 1,
-    borderColor: '#eee',
+    borderColor: colors.borderColor,
   },
 });

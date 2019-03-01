@@ -3,13 +3,12 @@ import {
   Text,
   View,
   TouchableHighlight,
-  TouchableOpacity,
   StyleSheet,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
 import colors from '../../styles/colors';
-import { texts } from '../../styles/componnets';
+import { texts } from '../../styles/components';
 
 export default class Price extends Component {
   static propTypes = {
@@ -31,7 +30,7 @@ export default class Price extends Component {
 
     return (
       <TouchableHighlight 
-        underlayColor='#eee'
+        underlayColor={colors.borderColor}
         style={styles.price} 
         onPress={() => {}}
       >
@@ -66,9 +65,9 @@ const styles = StyleSheet.create({
     elevation: 1,
     flex: 1,
     padding: 19,
-    borderRightWidth: 1,
-    borderTopWidth: 1,
-    borderColor: '#eee',
+    borderRightWidth: StyleSheet.hairlineWidth,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.borderColor,
   },
   text: {
     fontSize: 16,

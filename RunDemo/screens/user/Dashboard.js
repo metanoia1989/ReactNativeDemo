@@ -14,7 +14,7 @@ import List from '../../components/list/List';
 import { userinfo } from '../../utils/data';
 import { getMaterialIcon, getTabBarIcon } from '../../utils/api';
 import  colors  from '../../styles/colors';
-import { texts } from '../../styles/componnets';
+import { texts } from '../../styles/components';
 
 
 const listData = [

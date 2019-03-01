@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
   order_content: {
     borderTopWidth: 0.8,
     borderBottomWidth: 0.8,
-    borderColor: '#eee',
+    borderColor: colors.borderColor,
     padding: 10,   
   },
   order_footer: {

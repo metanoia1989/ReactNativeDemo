@@ -8,7 +8,7 @@ import {
 import PropTypes from 'prop-types';
 
 import colors from '../../styles/colors';
-import { texts } from '../../styles/componnets';
+import { texts } from '../../styles/components';
 
 export default class Price extends Component {
   static propTypes = {
@@ -20,7 +20,7 @@ export default class Price extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>{name}</Text>
+        <Text numberOfLines={1} style={styles.text}>{name}</Text>
       </View>
     );
   }
@@ -30,7 +30,7 @@ export default class Price extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.bgWhite,
-    minHeight: 50,
+    height: 50,
     padding: 10,
     textAlignVertical: 'center',
   },

@@ -19,7 +19,7 @@ import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
 
 import colors from '../../styles/colors';
-import { buttons, texts } from '../../styles/componnets';
+import { buttons, texts } from '../../styles/components';
 
 class Product extends Component {
   
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   product_content: {
     borderTopWidth: 0.8,
     borderBottomWidth: 0.8,
-    borderColor: '#eee',
+    borderColor: colors.borderColor,
     padding: 10,   
     flexDirection: 'row',
     justifyContent: 'flex-start',
