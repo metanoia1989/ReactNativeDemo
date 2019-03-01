@@ -23,8 +23,9 @@ export default class ProductComments extends Component {
     },
   });
 
-  renderItem = ({ item }) => {
-    return <Comment {...item} />;
+  renderItem = ({ item, index }) => {
+    const last = productCommentsData.comments.length === index + 1;
+    return <Comment {...item} last={last} />;
   };
 
   render() {

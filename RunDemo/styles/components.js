@@ -55,6 +55,10 @@ const texts = StyleSheet.create({
   },
 });
 
+
+/**
+ * 各种类型的固定布局
+ */
 const fixeds = StyleSheet.create({
   title_fixed: {
     elevation: 3,
@@ -64,9 +68,38 @@ const fixeds = StyleSheet.create({
   },
 });
 
+/** 
+ * 各种类型的边框
+ */
+const borders = StyleSheet.create({
+  noBorder: {
+    borderWidth: 0,
+  },
+  noAllBorder: {
+    borderWidth: 0,
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+  },
+  noTopBorder: {
+    borderTopWidth: 0,
+  },
+  noBottomBorder: {
+    borderBottomWidth: 0,
+  },
+  noLeftBorder: {
+    borderLeftWidth: 0,
+  },
+  noRightBorder: {
+    borderRightWidth: 0,
+  },
+});
+
 
 export {
   buttons,
   texts,
   fixeds,
+  borders,
 }

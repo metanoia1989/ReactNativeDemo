@@ -25,6 +25,11 @@ export default class Comment extends Component {
     ]), 
     date_added: PropTypes.string,
     store_name: PropTypes.string,
+    last: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    last: false,
   };
 
   render() {
@@ -33,14 +38,25 @@ export default class Comment extends Component {
       store_name,
       text, img,
       date_added,
+      last,
     } = this.props;
 
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, last && styles.last]}>
         <Box>
           <Item title="卖家" content="前无古人"  />
-          <Item title="评论内容" content="哈哈大笑，嘻嘻哈哈哈，wuli韬韬"  />
-          <Item title="评论配图" bigContent={true}  />
+          <Item 
+            title="评论内容" 
+            content="哈哈大笑，嘻嘻哈哈哈，wuli韬韬哼哈花费大时代是发送到发送到发送到发士大夫撒地方"  
+            bigContent={true}
+          />
+          <Item title="评论配图" >
+            <Text>测试节目</Text>
+            <Text>测试节目</Text>
+            <Text>测试节目</Text>
+          </Item>
+          <Item title="评论时间" content="2018-12-03" />
+          <Item title="帮手" content="测试服务社" last={true}  />
         </Box>
       </View>
     );
@@ -54,6 +70,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginTop: 10,
     minHeight: 50,
+  },
+  last: {
+    marginBottom: 10,
   },
   text: {
     fontSize: 16,
