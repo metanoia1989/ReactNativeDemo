@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
+  ScrollView,
   Image,
   TouchableHighlight,
   StyleSheet,
@@ -13,6 +14,15 @@ import Item from '../form/Item';
 
 import colors from '../../styles/colors';
 import { texts } from '../../styles/components';
+
+const urls = [
+  'https://s1.ax1x.com/2018/05/12/CBlFQP.jpg',
+  'https://s1.ax1x.com/2018/05/12/CBlCRI.jpg',
+  'https://s1.ax1x.com/2018/05/12/CBlnij.jpg',
+  'https://s1.ax1x.com/2018/05/12/CBQzIH.jpg',
+  'https://s1.ax1x.com/2018/05/12/CBlZdg.jpg',
+  'https://s1.ax1x.com/2018/05/12/CBlAL8.jpg',
+];
 
 export default class Comment extends Component {
   static propTypes = {
@@ -50,10 +60,14 @@ export default class Comment extends Component {
             content="哈哈大笑，嘻嘻哈哈哈，wuli韬韬哼哈花费大时代是发送到发送到发送到发士大夫撒地方"  
             bigContent={true}
           />
-          <Item title="评论配图" >
-            <Text>测试节目</Text>
-            <Text>测试节目</Text>
-            <Text>测试节目</Text>
+          <Item title="评论配图">
+            <ScrollView style={styles.imageBox} horizontal={true}>
+              <Image style={styles.image} source={require('../../assets/images/placeholder.png')} />
+              <Image style={styles.image} source={require('../../assets/images/placeholder.png')} />
+              <Image style={styles.image} source={require('../../assets/images/placeholder.png')} />
+              <Image style={styles.image} source={require('../../assets/images/placeholder.png')} />
+              <Image style={styles.image} source={require('../../assets/images/placeholder.png')} />
+            </ScrollView>
           </Item>
           <Item title="评论时间" content="2018-12-03" />
           <Item title="帮手" content="测试服务社" last={true}  />
@@ -76,5 +90,12 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
+  },
+  imageBox: {
+  },
+  image: {
+    width: 200,
+    height: 200, 
+    marginRight: 1,
   },
 });

@@ -77,6 +77,6 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   endArea: {
-    
+    flex: 1,
   },
 })

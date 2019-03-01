@@ -41,8 +41,8 @@ const MainNavigator = createStackNavigator({
   ...UserScreens,
   
 }, {
-  initialRouteName: 'ProductComments',
-  // initialRouteName: 'MainTab',
+  // initialRouteName: 'ProductList',
+  initialRouteName: 'MainTab',
   defaultNavigationOptions: {
     headerTitleStyle: {
       color: 'white',
