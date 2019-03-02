@@ -29,7 +29,7 @@ const listData = [
 export default class Dashborad extends Component {
   static navigationOptions = {
     title: '个人中心',
-    headerLeft: <NavigatorIcon />,
+    headerLeft: <NavigatorIcon color={colors.headerColor} />,
 
     tabBarLabel: '个人中心',
     tabBarIcon: getTabBarIcon('account-circle')

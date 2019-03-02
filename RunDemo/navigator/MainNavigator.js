@@ -41,16 +41,17 @@ const MainNavigator = createStackNavigator({
   ...UserScreens,
   
 }, {
-  // initialRouteName: 'ProductList',
-  initialRouteName: 'MainTab',
+  initialRouteName: 'ProductPreview',
+  // initialRouteName: 'MainTab',
   defaultNavigationOptions: {
     headerTitleStyle: {
-      color: 'white',
+      color: colors.headerColor,
       fontWeight: '100',
     },
     headerStyle: {
-      backgroundColor: colors.primaryYellow,
+      backgroundColor: colors.headerBgColor,
     },
+    headerTintColor: colors.headerColor,
   },
 });
 

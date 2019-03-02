@@ -8,9 +8,8 @@ import {
 import PropTypes from 'prop-types';
 
 import colors from '../../styles/colors';
-import { texts } from '../../styles/components';
 
-export default class Price extends Component {
+export default class Title extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
   };

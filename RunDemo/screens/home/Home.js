@@ -104,7 +104,7 @@ export default class Home extends Component {
 
     static navigationOptions = {
       title: '首页',
-      headerLeft: <NavigatorIcon />,
+      headerLeft: <NavigatorIcon color={colors.headerColor} />,
 
       tabBarLabel: '首页',
       tabBarIcon: getTabBarIcon('home')

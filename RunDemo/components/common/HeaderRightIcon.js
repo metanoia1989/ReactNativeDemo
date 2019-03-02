@@ -12,11 +12,13 @@ export default class NavigatorIcon extends Component {
   static propTypes = {
     onPress: PropTypes.func,
     icon: PropTypes.string,
+    color: PropTypes.string,
   };
 
   static defaultProps = {
     onPress: () => {},
     icon: 'search',
+    color: 'gray',
   };
 
   handlePress = () => {
@@ -24,14 +26,14 @@ export default class NavigatorIcon extends Component {
   };
 
   render () {
-    const { icon } = this.props; 
+    const { icon, color } = this.props; 
 
     return (
       <TouchableOpacity 
         style={styles.icon}
         onPress={this.handlePress}
       >
-        {getMaterialIcon(icon)}
+        {getMaterialIcon(icon, color)}
       </TouchableOpacity>
     );
   }

@@ -17,9 +17,9 @@ import { getTabBarIcon } from '../../utils/api';
 export default class ProductList extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.getParam('title', '商品列表'),
-    headerLeft: <NavigatorIcon />,
-    headerRight: <HeaderRightIcon />, 
-    headerLeft: <NavigatorIcon />,
+    headerLeft: <NavigatorIcon color={colors.headerColor} />,
+    headerRight: <HeaderRightIcon color={colors.headerColor} />, 
+
     // tab 
     tabBarLabel: '商品',
     tabBarIcon: getTabBarIcon('local-mall'),

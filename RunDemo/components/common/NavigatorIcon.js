@@ -11,6 +11,11 @@ import { getMaterialIcon } from '../../utils/api';
 class NavigatorIcon extends Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired,
+    color: PropTypes.string,
+  };
+
+  static defaultProps = {
+    color: 'gray',
   };
 
   /**
@@ -22,14 +27,14 @@ class NavigatorIcon extends Component {
   };
 
   render() {
-    const { title } = this.props;
+    const { title, color } = this.props;
 
     return (
       <TouchableOpacity 
         style={styles.icon}
         onPress={this.handleToggleDrawer}
       >
-        {getMaterialIcon('menu')}
+        {getMaterialIcon('menu', color)}
       </TouchableOpacity>
     );
   }

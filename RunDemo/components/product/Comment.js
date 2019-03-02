@@ -62,11 +62,7 @@ export default class Comment extends Component {
           />
           <Item title="评论配图">
             <ScrollView style={styles.imageBox} horizontal={true}>
-              <Image style={styles.image} source={require('../../assets/images/placeholder.png')} />
-              <Image style={styles.image} source={require('../../assets/images/placeholder.png')} />
-              <Image style={styles.image} source={require('../../assets/images/placeholder.png')} />
-              <Image style={styles.image} source={require('../../assets/images/placeholder.png')} />
-              <Image style={styles.image} source={require('../../assets/images/placeholder.png')} />
+              {urls.map((uri, index) => (<Image key={index} style={styles.image} source={{uri}} />))}
             </ScrollView>
           </Item>
           <Item title="评论时间" content="2018-12-03" />
@@ -92,6 +88,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   imageBox: {
+    marginVertical: 5,
   },
   image: {
     width: 200,

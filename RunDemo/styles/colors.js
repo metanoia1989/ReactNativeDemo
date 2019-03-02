@@ -15,6 +15,9 @@ const bgWhite = '#fff';
 const borderColor = '#eee'; // 首页边框颜色
 const purple = '';  // 紫色
 
+const headerColor = 'white'; // 标题栏文字颜色
+const headerBgColor = primaryYellow; // 标题栏背景色
+
 export default {
   primary,
   warning,
@@ -31,4 +34,7 @@ export default {
   bgWhite,
   borderColor,
   purple,
+
+  headerColor,
+  headerBgColor,
 };

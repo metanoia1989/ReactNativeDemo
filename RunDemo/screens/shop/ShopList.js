@@ -20,8 +20,8 @@ export default class ShopList extends Component {
 
   static navigationOptions = ({ navigation }) => ({
     title: navigation.getParam('title', '店铺列表'),
-    headerLeft: <NavigatorIcon />,
-    headerRight: <HeaderRightIcon />, 
+    headerLeft: <NavigatorIcon color={colors.headerColor} />,
+    headerRight: <HeaderRightIcon color={colors.headerColor} />, 
 
     tabBarLabel: '店铺',
     tabBarIcon: getTabBarIcon('store'),

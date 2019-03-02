@@ -53,6 +53,19 @@ const texts = StyleSheet.create({
   white_text: {
     color: 'white',
   },
+  gray_text: {
+    color: '#888',
+  },
+  grays_text: {
+    color: '#aaa',
+  },
+
+  text_df: {
+    fontSize: 17,
+  },
+  text_lg: {
+    fontSize: 22,
+  },
 });
 
 
