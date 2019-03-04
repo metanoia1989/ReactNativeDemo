@@ -18,6 +18,8 @@ const purple = '';  // 紫色
 const headerColor = 'white'; // 标题栏文字颜色
 const headerBgColor = primaryYellow; // 标题栏背景色
 
+const orange = '#f37b1d'; // 橘黄色
+
 export default {
   primary,
   warning,
@@ -37,4 +39,6 @@ export default {
 
   headerColor,
   headerBgColor,
+
+  orange,
 };

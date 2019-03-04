@@ -8,6 +8,7 @@ import {
   Dimensions,
 } from 'react-native';
 
+import {  Button } from 'react-native-paper';
 import Modal from 'react-native-modal';
 import DatePicker from 'react-native-datepicker';
 import Swiper from 'react-native-swiper';
@@ -15,12 +16,14 @@ import HTML from 'react-native-render-html';
 
 import Box from '../../components/form/Box';
 import Item from '../../components/form/Item';
+import DashLine from '../../components/common/DashLine';
+import InsertText from '../../components/product/InsertText';
 
 import { productPreviewData } from '../../utils/data';
+import { diffObject, getCurrentDate } from '../../utils/tools'
 import { texts } from '../../styles/components';
 import colors from '../../styles/colors';
 import sizes from '../../styles/sizes';
-import InsertText from '../../components/product/InsertText';
 
 const dateCustomerPicker = {
   dateInput: {
@@ -43,29 +46,102 @@ export default class ProductPreview extends Component {
 
   constructor(props) {
     super(props);
+
+    const { 
+      image, 
+      quantity, 
+      min_price, 
+      max_price,
+    } = productPreviewData.product;
+
+    const options_combination = productPreviewData.options.map((item => item.option_name)).join(' '); 
+
+
     this.state = {
-      date: '2017-01-12',
+      date: getCurrentDate(),
+      showModal: false,
+      options_combination, 
+      // 展示的规格数据
+      selectShow: {
+        image,
+        quantity,
+        price: `${min_price} - ${max_price}` 
+      },
+      // 选择的规格
+      selectOption: {},
+      // 选择的规格名
+      selectNames: {},
     };
+
   }
 
+  handleChoosePrice = () => {
+    this.setState({
+      showModal: false,
+    });
+  };
+
+  handlePressSize = (option_id, item) => {
+    console.log('参数', option_id, item);
+
+    const { option_value_id, option_value_name } = item;
+    const { options, prices, product } = productPreviewData;
+
+    this.setState(prevState => ({
+      selectOption: {
+        ...prevState.selectOption,
+        [option_id]: option_value_id,
+      },
+      selectNames: {
+        ...prevState.selectNames,
+        [option_id]: option_value_name,
+      },
+      options_combination: '',
+    }), () => {
+      console.log('选择的子项', this.state.selectOption);
+      const { selectOption, selectNames } = this.state;
+
+      if(options.length != Object.keys(selectOption).length) return;
+
+      const value = prices.find( item => diffObject(item.combination, selectOption));
+
+      if(value){
+        if(!value.img) value.img = product.image;
+        const { price, quantity, img: image  } = value; 
+        this.setState({
+          selectShow: { price, quantity, image },
+          options_combination: Object.values(selectNames).join(' '),
+        });
+        console.log('最终展示的值', price, quantity, image);
+      }
+
+    });
+  };
+
   render() {
-    const { product, prices, options } = productPreviewData;
+    const { product, options } = productPreviewData;
+    const { 
+      showModal, 
+      selectShow, 
+      selectOption, 
+      selectNames, 
+      options_combination, 
+      date,
+    } = this.state;
+
     const picker = (
       <DatePicker
         customStyles={dateCustomerPicker}
         showIcon={false}
-        date={this.state.date}
+        date={date}
         mode='date'
         placeholder='请选择日期'
         format='YYYY-MM-DD'
-        minDate='2015-01-01'
-        maxDate='2019-01-01'
         confirmBtnText='确认'
         cancelBtnText='取消'
         onDateChange={date => this.setState({ date })}
       />
     );
-    console.log('picker是什么', Boolean(picker));
     
 
     return (
@@ -99,19 +175,76 @@ export default class ProductPreview extends Component {
         <Box style={styles.form}>
           <Item 
             title='选择规格' 
-            content='颜色 尺码' 
+            content={options_combination} 
             arrow={true}
-            onPress={() => console.log('点击了选择规格')}
+            onPress={() => this.setState({ showModal: true })}
           />
           <Item 
             title='使用日期' 
-            content='2019-03-02' 
+            content={date} 
             rightComponent={picker}
             arrow={true}
             last={true} 
             onPress={() => console.log('点击了使用日期')}
           />
         </Box>
+        <Modal 
+          isVisible={showModal} 
+          style={styles.modal}
+          onBackdropPress={() => this.setState({ showModal: false })}
+        >
+          <View style={styles.modalContent}>
+            <View style={styles.modalHeader}>
+              <Image style={styles.modalImage} source={{ uri: selectShow.image }} />
+              <View>
+                <Text style={texts.text_df}>
+                  价格: <Text style={texts.danger_text}>&yen; {selectShow.price}</Text>
+                </Text>
+                <Text style={texts.text_df}>库存: {selectShow.quantity}{product.unit}</Text>
+                <Text style={texts.text_df}>
+                  已选: {Object.values(selectNames).map((name, index)=> (
+                    <Text style={texts.primary_text} key={index}>{name}&nbsp;</Text>
+                  ))}
+                </Text>
+              </View>
+            </View>
+            <DashLine />
+            <View style={styles.modalOptions}>
+              {options.map((option, index) => (
+                <View key={`option-${index}`}>
+                  <Text style={texts.text_lg}>{option.option_name}</Text> 
+                  <View style={styles.sizeBox}>
+                    {option.child.map((item, index) => {
+                      const active = selectOption[option.option_id] == item.option_value_id;
+                      return (
+                        <Text 
+                          key={`option-value-${index}`}
+                          onPress={() => this.handlePressSize(option.option_id, item)}
+                          style={[texts.text_df, styles.sizeItem, active && styles.activeSizeItem]}
+                        >
+                          {item.option_value_name}
+                        </Text>
+                      );
+                    })}
+                  </View>
+                </View>
+              ))}
+            </View>
+            <DashLine />
+            <View style={styles.modalFooter}>
+              <Button mode="contained" 
+                compact={true}
+                dark={true}
+                color={colors.orange}  
+                contentStyle={styles.confirmText}
+                style={styles.confirmBtn}
+                onPress={this.handleChoosePrice}
+              >
+                确认选择
+              </Button>
+            </View>
+          </View>
+        </Modal>
         <InsertText text="商品详情" />
         <HTML html={product.description} imagesMaxWidth={Dimensions.get('window').width} />
       </ScrollView>
@@ -135,11 +268,6 @@ const styles = StyleSheet.create({
   dotStyle: {
     marginBottom: -10,
   },
-  text: {
-    color: '#fff',
-    fontSize: 30,
-    fontWeight: 'bold',
-  },
   header: {
     backgroundColor: colors.bgWhite,
     padding: 20,
@@ -148,7 +276,60 @@ const styles = StyleSheet.create({
     marginTop: 10, 
     elevation: 0,
   },
-  datePicker: {
+  // 选项规格
+  modal: {
+    justifyContent: 'flex-end',
+    margin: 0,
+  },
+  modalContent: {
+    backgroundColor: colors.bgWhite,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    margin: 20,
+  },
+  modalOptions: {
+    margin: 20,
+  },
+  modalFooter: {
+    marginHorizontal: 20,
+    marginVertical: 10,
+  },
+  modalImage: {
+    width: 130,
+    height: 130,
+    marginRight: 20,
+  },
+  confirmBtn: {
+  },
+  confirmText: {
+    fontSize: 20,
+    fontWeight: '800',
+  },
+  sizeBox: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    marginVertical: 5,
+    flexWrap: 'wrap',
+  },
+  sizeItem: {
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    marginHorizontal: 5,
+    marginVertical: 4,
+    borderRadius: 4,
+    backgroundColor: colors.borderColor,
+    color: '#666',
+    borderWidth: 1,
+    borderColor: '#dcdcdc',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+  activeSizeItem: {
+    borderColor: colors.orange,
+    color: colors.orange,
+    backgroundColor: 'rgba(238, 238, 238, .4)',
   },
 })
 

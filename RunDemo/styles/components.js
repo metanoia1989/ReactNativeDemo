@@ -66,6 +66,7 @@ const texts = StyleSheet.create({
   text_lg: {
     fontSize: 22,
   },
+
 });
 
 
