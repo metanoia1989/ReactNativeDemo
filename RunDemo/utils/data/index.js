@@ -16,6 +16,8 @@ import freightData from './freightData';
 import productPricesData from './productPricesData';
 import productCommentsData from './productCommentsData';
 import productPreviewData from './productPreviewData';
+import ordersData from './ordersData';
+import refundsData from './refundsData';
 
 export {
   homeData,
@@ -27,4 +29,6 @@ export {
   productPricesData,
   productCommentsData,
   productPreviewData,
+  ordersData,
+  refundsData,
 }

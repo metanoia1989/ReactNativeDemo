@@ -4846,6 +4846,15 @@ react-native-datepicker@^1.7.2:
   dependencies:
     moment "^2.22.0"
 
+react-native-gesture-handler@^1.1.0:
+  version "1.1.0"
+  resolved "http://registry.npm.taobao.org/react-native-gesture-handler/download/react-native-gesture-handler-1.1.0.tgz#2a7d545ad2e0ca23adce22b2af441ad360ecccee"
+  integrity sha1-Kn1UWtLgyiOtziKyr0Qa02DszO4=
+  dependencies:
+    hoist-non-react-statics "^2.3.1"
+    invariant "^2.2.2"
+    prop-types "^15.5.10"
+
 react-native-gesture-handler@~1.0.14:
   version "1.0.16"
   resolved "http://registry.npm.taobao.org/react-native-gesture-handler/download/react-native-gesture-handler-1.0.16.tgz#bee54981575e581857c2298e133ce2ffac240a3e"
@@ -4875,6 +4884,11 @@ react-native-paper@^2.11.1:
     react-lifecycles-compat "^3.0.4"
     react-native-safe-area-view "^0.12.0"
 
+react-native-reanimated@^1.0.0-alpha.12:
+  version "1.0.0-alpha.12"
+  resolved "http://registry.npm.taobao.org/react-native-reanimated/download/react-native-reanimated-1.0.0-alpha.12.tgz#535c84a9e87c919417aee0fa68f360b3bb9556b0"
+  integrity sha1-U1yEqeh8kZQXruD6aPNgs7uVVrA=
+
 react-native-render-html@^4.1.2:
   version "4.1.2"
   resolved "http://registry.npm.taobao.org/react-native-render-html/download/react-native-render-html-4.1.2.tgz#dfd06ac7e87ed68b6421750e88dd7895d284935b"
@@ -4897,6 +4911,16 @@ react-native-safe-area-view@^0.12.0:
   resolved "http://registry.npm.taobao.org/react-native-screens/download/react-native-screens-1.0.0-alpha.22.tgz#7a120377b52aa9bbb94d0b8541a014026be9289b"
   integrity sha1-ehIDd7Uqqbu5TQuFQaAUAmvpKJs=
 
+react-native-segmented-control-tab@^3.4.0:
+  version "3.4.0"
+  resolved "http://registry.npm.taobao.org/react-native-segmented-control-tab/download/react-native-segmented-control-tab-3.4.0.tgz#8e9f32cda2909deb0f45e12eed5a4827da221804"
+  integrity sha1-jp8yzaKQnesPReEu7VpIJ9oiGAQ=
+
+react-native-swipe-list-view@^1.5.3:
+  version "1.5.3"
+  resolved "http://registry.npm.taobao.org/react-native-swipe-list-view/download/react-native-swipe-list-view-1.5.3.tgz#6e5f0795ccfb9bf12b76ccbdfb7146c0ae2bd95b"
+  integrity sha1-bl8Hlcz7m/Erdsy9+3FGwK4r2Vs=
+
 react-native-swiper@^1.5.14:
   version "1.5.14"
   resolved "http://registry.npm.taobao.org/react-native-swiper/download/react-native-swiper-1.5.14.tgz#1c6f949ca377186300f972bb0f30d24062c899aa"
@@ -4910,6 +4934,11 @@ react-native-tab-view@^1.0.0, react-native-tab-view@^1.2.0:
   integrity sha1-xOQ6U43KzOFRk4dFzqCRdr7sy8M=
   dependencies:
     prop-types "^15.6.1"
+
+react-native-tab-view@^2.0.1:
+  version "2.0.1"
+  resolved "http://registry.npm.taobao.org/react-native-tab-view/download/react-native-tab-view-2.0.1.tgz#67ad94be00d751f35367838bb7b089361e58af5d"
+  integrity sha1-Z62UvgDXUfNTZ4OLt7CJNh5Yr10=
 
 react-native-vector-icons@^6.3.0:
   version "6.3.0"

@@ -18,12 +18,12 @@ import { texts } from '../../styles/components';
 
 
 const listData = [
-  { title: '客户订单', icon: 'view-list', color: colors.primary },
-  { title: '退款列表', icon: 'mail', color: colors.warning},
-  { title: '销售统计', icon: 'equalizer', color: colors.primary },
-  { title: '我要提现', icon: 'euro-symbol', color: colors.success},
-  { title: '运费设置', icon: 'local-shipping', color: colors.primary },
-  { title: '修改密码', icon: 'mode-edit', color: colors.primary },
+  { title: '客户订单', icon: 'view-list', color: colors.primary, target: 'OrderList' },
+  { title: '退款列表', icon: 'mail', color: colors.warning, target: 'RefundList' },
+  { title: '销售统计', icon: 'equalizer', color: colors.primary, target: 'Finance' },
+  { title: '我要提现', icon: 'euro-symbol', color: colors.success, target: 'WithDrawal' },
+  { title: '运费设置', icon: 'local-shipping', color: colors.primary, target: 'FreightList' },
+  { title: '修改密码', icon: 'mode-edit', color: colors.primary, target: 'Password' },
 ];
 
 export default class Dashborad extends Component {
@@ -35,7 +35,14 @@ export default class Dashborad extends Component {
     tabBarIcon: getTabBarIcon('account-circle')
   };
 
+
   render() {
+    const { navigation } = this.props;
+    const navigatorData = listData.map(item => {
+      item.onPress = () => navigation.navigate(item.target);
+      return item;
+    });
+
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -65,7 +72,7 @@ export default class Dashborad extends Component {
             </View>
           </View>
         </View>
-        <List actions={listData} />
+        <List actions={navigatorData} />
       </View>
     );
   }

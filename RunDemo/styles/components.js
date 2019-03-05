@@ -67,6 +67,29 @@ const texts = StyleSheet.create({
     fontSize: 22,
   },
 
+  center_text: {
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+
+});
+
+/**
+ * 各种类型的背景色
+ */
+const bgs = StyleSheet.create({
+  primary_bg: {
+    backgroundColor: colors.primary,
+  },
+  danger_bg: {
+    backgroundColor: colors.danger,
+  }, 
+  warning_bg: {
+    backgroundColor: colors.warning,
+  }, 
+  success_bg: {
+    backgroundColor: colors.success, 
+  }, 
 });
 
 
@@ -79,6 +102,9 @@ const fixeds = StyleSheet.create({
     borderBottomWidth: 0,
     position: 'absolute',
     top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1,
   },
 });
 
@@ -116,4 +142,5 @@ export {
   texts,
   fixeds,
   borders,
+  bgs,
 }

@@ -41,7 +41,7 @@ const MainNavigator = createStackNavigator({
   ...UserScreens,
   
 }, {
-  initialRouteName: 'ProductPreview',
+  initialRouteName: 'Finance',
   // initialRouteName: 'MainTab',
   defaultNavigationOptions: {
     headerTitleStyle: {
