@@ -21,6 +21,8 @@ import AnimatedDecay from './AnimatedDecay';
 import AnimatedParallel from './AnimatedParallel';
 import AnimatedSequence from './AnimatedSequence';
 import AnimatedStagger from './AnimatedStagger';
+import AnimatedSequence2 from './AnimatedSequence2';
+import AnimatedStagger2 from './AnimatedStagger2';  
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -69,8 +71,14 @@ export default class App extends Component<Props> {
         {/* AnimatedSequence 顺序执行 sequence */}
         {/* <AnimatedSequence /> */}
 
+        {/* AnimatedSequence2 顺序执行 sequence */}
+        {/* <AnimatedSequence2 /> */}
+
         {/* AnimatedStagger 间隔执行 stagger */}
-        <AnimatedStagger />
+        {/* <AnimatedStagger /> */}
+
+        {/* AnimatedStagger2 间隔执行 stagger */}
+        <AnimatedStagger2 />
       </View>
     );
   }
